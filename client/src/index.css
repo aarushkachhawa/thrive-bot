@@ -56,13 +56,31 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #502f02;
     background-color: #ffffff;
   }
   a:hover {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #13260d;
+    color: white;
   }
+}
+
+.home-page {
+  background-image: url('./assets/home_background.png');
+  background-color: #d5ecd5;
+  overflow: hidden;
+  padding: 0;
+  background-position: center;
+  height: 90vh;
+}
+
+label {
+  padding-right: 5px;
+}
+
+button {
+  margin-top: 15px;
 }

@@ -32,15 +32,10 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <h1>ThriveBot</h1>
-      
+      <h1>Thrive</h1>
+
       <UserForm onUserAdded={handleUserAdded} />
-      
-      {loading ? (
-        <p>Loading users...</p>
-      ) : (
-        <UserList users={users} />
-      )}
+
     </div>
   );
 }

@@ -33,7 +33,7 @@ function UserForm({ onUserAdded }) {
       }
     } catch (error) {
       console.error('Error adding user:', error);
-      alert('Failed to add user');
+      alert(error);
     }
   };
 
@@ -42,14 +42,19 @@ function UserForm({ onUserAdded }) {
       
       
       <div className="app-description">
-        <h3>About ThriveBot</h3>
-        <p>
-          Welcome to ThriveBot! Our goal is to help address and maintain our users mental well-being through our powerful AI based chatbot.
-          Sign-up below to get first access to our application. 
-        </p>
+        <h3>About Thrive</h3>
+          <p>
+              Welcome to Thrive! Our goal is to help address and maintain our users mental well-being through our
+              powerful AI based chatbot. <br></br><br></br>
+              Looking for new resources to try, from breathing and mindfulness techniques to different kinds of
+              journaling? Or would you like help finding and making an appointment with a therapist that best matches
+              you? Our platform offers a wide variety of tools and resources to support your mental well-being
+              goals. <br></br><br></br>
+              Sign-up below to get first access to our application.
+          </p>
       </div>
 
-      <h2>Add New User</h2>
+      <h2>Sign Up Here:</h2>
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -73,7 +78,7 @@ function UserForm({ onUserAdded }) {
           />
         </div>
         
-        <button type="submit">Add User</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
