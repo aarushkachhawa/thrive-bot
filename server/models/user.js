@@ -7,9 +7,12 @@ async function getAllUsers() {
 }
 
 // Create a new user
-async function createUser(userData) {
+async function createUser(data) {
   return await prisma.user.create({
-    data: userData
+    data: {
+      email: data.email,
+      name: data.name
+    }
   });
 }
 

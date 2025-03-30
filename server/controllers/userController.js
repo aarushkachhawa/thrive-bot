@@ -6,7 +6,8 @@ async function getUsers(req, res) {
     const users = await userModel.getAllUsers();
     res.json(users);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error getting users:', error);
+    res.status(500).json({ error: 'Failed to fetch users' });
   }
 }
 
@@ -15,14 +16,22 @@ async function createUser(req, res) {
   try {
     const { name, email } = req.body;
     
+    console.log('Received create user request:', { name, email });
+    
     if (!email) {
       return res.status(400).json({ error: 'Email is required' });
     }
     
     const newUser = await userModel.createUser({ name, email });
+    console.log('User created successfully:', newUser);
     res.status(201).json(newUser);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Detailed error creating user:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+    res.status(500).json({ error: `Failed to create user: ${error.message}` });
   }
 }
 
