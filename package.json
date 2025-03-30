@@ -7,8 +7,9 @@
     "server": "nodemon server/index.js",
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm install && npm run build && cd .. && prisma generate --schema=./server/prisma/schema.prisma",
     "start": "node server/index.js",
-    "postinstall": "prisma generate --schema=./server/prisma/schema.prisma"
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",

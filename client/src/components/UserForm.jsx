@@ -8,8 +8,7 @@ function UserForm({ onUserAdded }) {
     e.preventDefault();
     
     try {
-        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-        const response = await fetch(`${apiUrl}/api/users`, {
+      const response = await fetch('/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +32,7 @@ function UserForm({ onUserAdded }) {
       }
     } catch (error) {
       console.error('Error adding user:', error);
-      alert(error);
+      alert("Error");
     }
   };
 
