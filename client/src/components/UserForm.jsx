@@ -8,15 +8,30 @@ function UserForm({ onUserAdded }) {
     e.preventDefault();
     
     try {
+      console.log('Submitting form...', { name, email });
       const response = await fetch('/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
+        credentials: 'omit',
         body: JSON.stringify({ name, email }),
       });
       
-      const data = await response.json();
+      console.log('Response status:', response.status);
+      
+      // Check if response has content before trying to parse JSON
+      const text = await response.text();
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch (e) {
+        console.error('Failed to parse response:', text);
+        throw new Error('Invalid response from server');
+      }
+      
+      console.log('Response data:', data);
       
       if (response.ok) {
         // Clear form
@@ -27,12 +42,18 @@ function UserForm({ onUserAdded }) {
         if (onUserAdded) {
           onUserAdded(data);
         }
+        alert('Successfully signed up!');
       } else {
-        alert(data.error || 'Something went wrong');
+        console.error('Server error:', data);
+        alert(data.error || 'Failed to create user');
       }
     } catch (error) {
-      console.error('Error adding user:', error);
-      alert("Error");
+      console.error('Network error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+      alert('Server error - please try again later');
     }
   };
 
