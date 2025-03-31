@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 function UserForm({ onUserAdded }) {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -42,7 +44,7 @@ function UserForm({ onUserAdded }) {
         if (onUserAdded) {
           onUserAdded(data);
         }
-        alert('Successfully signed up!');
+        navigate("/confirmation");
       } else {
         console.error('Server error:', data);
         alert(data.error || 'Failed to create user');
@@ -59,21 +61,6 @@ function UserForm({ onUserAdded }) {
 
   return (
     <div className="user-form">
-      
-      
-      <div className="app-description">
-        <h3>About Thrive</h3>
-          <p>
-              Welcome to Thrive! Our goal is to help address and maintain our users mental well-being through our
-              powerful AI based chatbot. <br></br><br></br>
-              Looking for new resources to try, from breathing and mindfulness techniques to different kinds of
-              journaling? Or would you like help finding and making an appointment with a therapist that best matches
-              you? Our platform offers a wide variety of tools and resources to support your mental well-being
-              goals. <br></br><br></br>
-              Sign-up below to get first access to our application.
-          </p>
-      </div>
-
       <h2>Sign Up Here:</h2>
       
       <form onSubmit={handleSubmit}>
@@ -98,7 +85,7 @@ function UserForm({ onUserAdded }) {
           />
         </div>
         
-        <button type="submit">Submit</button>
+        <button className='submit' type="submit">Submit</button>
       </form>
     </div>
   );
