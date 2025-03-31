@@ -1,0 +1,2 @@
+To run the chatbot, just run "python app.py"
+The chatbot should be running on "http://127.0.0.1:8000"
