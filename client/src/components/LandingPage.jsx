@@ -1,7 +1,9 @@
 import React from "react";
 import backgroundImage from "../assets/LandingPageBG.jpg";
+import {useNavigate} from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const styles = {
     container: {
       position: "relative",
@@ -89,6 +91,7 @@ const LandingPage = () => {
         style={styles.button}
         onMouseEnter={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
         onMouseLeave={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
+        onClick={() => navigate("/signup")}
       >
         SIGN UP HERE
       </button>
