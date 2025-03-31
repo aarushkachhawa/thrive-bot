@@ -11,11 +11,20 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());  // Move this BEFORE cors
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: [
+    'http://localhost:5173', 
+    'http://127.0.0.1:5173',
+    'https://thrive-bot-production.up.railway.app',
+    'https://thrive-bot-production.up.railway.app:8080'
+  ],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: false,
   allowedHeaders: ['Content-Type', 'Accept']
 }));
+
+
+console.log('Build directory path:', path.join(__dirname, '../client/dist'));
+console.log('Build directory exists:', require('fs').existsSync(path.join(__dirname, '../client/dist')));
 
 // Request logging
 app.use((req, res, next) => {
