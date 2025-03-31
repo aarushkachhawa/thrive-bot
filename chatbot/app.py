@@ -11,12 +11,12 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-
 openai_api_key = os.getenv('OPENAI_API_KEY')
-
 client = OpenAI(api_key=openai_api_key)
 
 conversations = {}
+
+INITIAL_MESSAGE = "Hello! I'm a chatbot from Thrive that is here to listen and support you. How are you feeling today?"
 
 @app.route('/')
 def index():
@@ -27,28 +27,32 @@ def chat():
     try:
         data = request.json
         user_message = data.get('message', '')
-        conversation_id = data.get('conversationID', 'default')
+        conversation_id = data.get('conversationId', 'default')
 
+        # Initialize conversation history if it doesn't exist
         if conversation_id not in conversations:
             conversations[conversation_id] = [
-                {"role": "system", "content": open('system_prompt.txt', 'r').read()}
+                {"role": "system", "content": "You are a helpful mental health and wellbeing assistant."},
+                {"role": "assistant", "content": INITIAL_MESSAGE}
             ]
+            # Return initial message for new conversations
+            return jsonify({'response': INITIAL_MESSAGE, 'isInitial': True})
 
+        # Add user message to history
         conversations[conversation_id].append({"role": "user", "content": user_message})
 
-
+        # Get response from OpenAI
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=conversations[conversation_id]
         )
-        
-        response = response.choices[0].message.content
 
-        conversations[conversation_id].append({"role": "assistant", "content": response})
+        bot_response = response.choices[0].message.content
 
-        return jsonify({
-            'response': response
-        })
+        # Add assistant response to history
+        conversations[conversation_id].append({"role": "assistant", "content": bot_response})
+
+        return jsonify({'response': bot_response, 'isInitial': False})
 
     except Exception as e:
         print(f"Error: {str(e)}")

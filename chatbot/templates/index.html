@@ -80,6 +80,33 @@
 
         const PORT = 8000;
 
+        // Function to get initial message
+        async function getInitialMessage() {
+            try {
+                const response = await fetch(`http://localhost:${PORT}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        message: '',
+                        conversationId 
+                    })
+                });
+
+                const data = await response.json();
+                if (data.isInitial) {
+                    addMessage(data.response, false);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Error: Could not connect to server', false);
+            }
+        }
+
+        // Call getInitialMessage when the page loads
+        window.addEventListener('load', getInitialMessage);
+
         async function sendMessage() {
             const input = document.getElementById('user-input');
             const message = input.value.trim();
