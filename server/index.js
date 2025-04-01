@@ -49,12 +49,34 @@ app.use((req, res, next) => {
 
 // Test route to verify server is working
 app.get('/test', (req, res) => {
+  const buildDir = path.join(__dirname, '../client/dist');
+  const assetsDir = path.join(buildDir, 'assets');
+  const indexPath = path.join(buildDir, 'index.html');
+  
+  let indexContent = '';
+  try {
+    indexContent = fs.readFileSync(indexPath, 'utf8');
+  } catch (err) {
+    indexContent = `Error reading index.html: ${err.message}`;
+  }
+
+  let assetsContent = [];
+  try {
+    if (fs.existsSync(assetsDir)) {
+      assetsContent = fs.readdirSync(assetsDir);
+    }
+  } catch (err) {
+    assetsContent = [`Error reading assets: ${err.message}`];
+  }
+
   res.json({ 
     message: 'Server is running',
     buildDir: buildDir,
     buildDirExists: fs.existsSync(buildDir),
     env: process.env.NODE_ENV,
-    buildContents: fs.existsSync(buildDir) ? fs.readdirSync(buildDir) : []
+    buildContents: fs.existsSync(buildDir) ? fs.readdirSync(buildDir) : [],
+    assetsContents: assetsContent,
+    indexHtml: indexContent
   });
 });
 
