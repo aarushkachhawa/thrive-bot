@@ -95,15 +95,11 @@ app.use(express.static(buildDir, {
   lastModified: true,
   setHeaders: (res, filePath) => {
     console.log('Serving static file:', filePath);
-    // Force no caching for HTML files
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-    } else {
-      // Cache other assets for 1 hour
-      res.setHeader('Cache-Control', 'public, max-age=3600');
-    }
+    // Force no caching for all files
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
   }
 }));
 
