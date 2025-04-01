@@ -11,7 +11,7 @@
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prebuild": "cd client && rm -rf dist",
-    "build": "export NODE_ENV=production && cd client && npm install --omit=dev && npm run build && cd .. && npm install --omit=dev && npx prisma generate --schema=./server/prisma/schema.prisma",
+    "build": "export NODE_ENV=production && cd client && npm install --omit=dev && npm run build && cd .. && npm install --omit=dev && npx prisma generate --schema=./server/prisma/schema.prisma && npx prisma migrate deploy --schema=./server/prisma/schema.prisma",
     "start": "node server/index.js"
   },
   "keywords": [],
