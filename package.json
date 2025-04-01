@@ -2,13 +2,15 @@
   "name": "thrive-website",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/index.js",
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "clean": "rm -rf client/dist && rm -rf client/node_modules && rm -rf node_modules && rm -rf ~/.vite && rm -rf client/.vite",
-    "build": "export NODE_ENV=production && npm run clean && cd client && npm install --omit=dev && npm run build && cd .. && npm install --omit=dev && echo 'Database URL format check:' && npx prisma db pull --schema=./server/prisma/schema.prisma && npx prisma generate --schema=./server/prisma/schema.prisma",
+    "build": "export NODE_ENV=production && cd client && rm -rf dist && npm install --omit=dev && npm run build && cd .. && npm install --omit=dev && npx prisma generate --schema=./server/prisma/schema.prisma",
     "start": "node server/index.js",
     "postinstall": "npm run build"
   },
@@ -17,12 +19,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.5.0",
+    "@prisma/client": "^5.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "prisma": "^6.5.0",
-    "react-router-dom": "^7.4.1"
+    "prisma": "^5.10.0",
+    "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
