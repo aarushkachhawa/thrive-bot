@@ -8,7 +8,7 @@
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "clean": "rm -rf client/dist && rm -rf client/node_modules && rm -rf node_modules && rm -rf ~/.vite && rm -rf client/.vite",
-    "build": "export NODE_ENV=production && npm run clean && cd client && npm install --omit=dev && npm run build && cd .. && npx prisma generate --schema=./server/prisma/schema.prisma && npx prisma db push --schema=./server/prisma/schema.prisma",
+    "build": "export NODE_ENV=production && npm run clean && cd client && npm install --omit=dev && npm run build && cd .. && npm install --omit=dev && echo 'Database URL format check:' && npx prisma db pull --schema=./server/prisma/schema.prisma && npx prisma generate --schema=./server/prisma/schema.prisma",
     "start": "node server/index.js",
     "postinstall": "npm run build"
   },
