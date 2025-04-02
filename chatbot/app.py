@@ -69,5 +69,5 @@ def test():
     })
 
 if __name__ == '__main__':
-    port = int(os.getenv('FLASK_PORT', 8000))
-    app.run(debug=True, port=port) 
+    port = int(os.getenv('PORT', 8000))
+    app.run(host='0.0.0.0', port=port) 
