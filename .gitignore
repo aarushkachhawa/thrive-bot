@@ -1,3 +1,31 @@
+# Node.js
 node_modules
 # Keep environment variables out of version control
 .env
+
+# Python specific
+chatbot/venv/
+chatbot/__pycache__/
+chatbot/*.pyc
+chatbot/*.pyo
+chatbot/*.pyd
+chatbot/.Python
+chatbot/.env
+chatbot/.python-version
+chatbot/*.log
+
+# Python cache directories
+**/__pycache__/
+**/*.pyc
+
+# venv
+**/venv/
+**/env/
+**/.env
+
+# ide specific
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
