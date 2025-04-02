@@ -10,8 +10,10 @@
     "server": "cd chatbot && source venv/bin/activate && python app.py",
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "cd client && npm install && npm run build",
-    "start": "cd chatbot && source venv/bin/activate && gunicorn app:app"
+    "prebuild": "cd client && rm -rf dist",
+    "build": "export NODE_ENV=production && cd client && npm install --legacy-peer-deps --force && npm run build && cd .. && npx prisma generate --schema=./server/prisma/schema.prisma && npx prisma migrate deploy --schema=./server/prisma/schema.prisma",
+    "start": "node server/index.js && cd chatbot && source venv/bin/activate && gunicorn app:app",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",

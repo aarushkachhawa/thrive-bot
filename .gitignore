@@ -28,6 +28,5 @@ chatbot/*.log
 .idea/
 *.swp
 *.swo
+
 .DS_Store
-
-

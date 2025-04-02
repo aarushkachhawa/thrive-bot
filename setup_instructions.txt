@@ -1,4 +1,4 @@
-# ThriveBot Project Setup Instructions
+ThriveBot Project Setup Instructions
 
 ## Dependencies
 

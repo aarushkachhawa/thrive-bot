@@ -21,13 +21,11 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-body {
+html, body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
@@ -42,13 +40,18 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  box-shadow: inset white 2px 2px 3px, inset white -2px -2px 3px;
 }
+
+.submit {
+  background-color: #502f02;
+  color: #f8dac3;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -57,14 +60,10 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #502f02;
-    background-color: #ffffff;
+    background-color: #a5725c;
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #13260d;
-    color: white;
   }
 }
 
@@ -75,6 +74,7 @@ button:focus-visible {
   padding: 0;
   background-position: center;
   height: 90vh;
+  width: 100%;
 }
 
 label {
@@ -83,4 +83,87 @@ label {
 
 button {
   margin-top: 15px;
+}
+
+.user-form {
+  border: 2px solid #f8dac3;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+input {
+  border-radius: 10px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.company-name {
+  animation: glow 2.5s infinite ease-in;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 4px -2px 2px #f8e2c9;
+  }
+
+  50% {
+    text-shadow: none;
+  }
+
+  100% {
+    text-shadow: 4px -2px 2px #f8e2c9;
+  }
+}
+
+p {
+  font-size: 24px;
+}
+
+.home-button {
+  background-color: #502f02;
+  outline: 2px solid #f8e2c9;
+  color: #f8e2c9;
+}
+
+.home-button:hover {
+  outline: 2px dashed #f8e2c9;
+  box-shadow: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.App {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.confirmation-page,
+.sign-up-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
