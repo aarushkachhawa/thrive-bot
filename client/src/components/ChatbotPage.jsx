@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ChatbotPage.css';
 
-let API_URL;
-switch (process.env.NODE_ENV) {
+let API_URL = 'http://localhost:8000';
+
+/*switch (process.env.NODE_ENV) {
     case 'production':
         API_URL = 'https://thrive-bot-testing.up.railway.app';
         break;
@@ -12,7 +13,7 @@ switch (process.env.NODE_ENV) {
         break;
     default:
         API_URL = 'http://localhost:8000';
-}
+}*/
 
 const ChatbotPage = () => {
     const [messages, setMessages] = useState([]);
