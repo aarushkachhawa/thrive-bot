@@ -87,7 +87,7 @@ const ChatbotPage = () => {
         } catch (error) {
             console.error('Error:', error);
             setMessages(prev => [...prev, {
-                text: `Sorry, I'm having trouble connecting to the server. node process: ${process.env.NODE_ENV}`,
+                text: `Sorry, I'm having trouble connecting to the server. node process: ${error}`,
                 isUser: false
             }]);
         }
