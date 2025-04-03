@@ -22,7 +22,7 @@ INITIAL_MESSAGE = "Hello! I'm a chatbot from Thrive that is here to listen and s
 def index():
     return render_template('index.html')
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chatbot', methods=['POST'])
 def chat():
     try:
         data = request.json

@@ -2,9 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ChatbotPage.css';
 
-const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://thrive-bot-production.up.railway.app/'
-    : 'http://localhost:8000';
+let API_URL;
+switch (process.env.NODE_ENV) {
+    case 'production':
+        API_URL = 'https://thrive-bot-production.up.railway.app';
+        break;
+    case 'development':
+        API_URL = 'https://thrive-bot-testing.up.railway.app';
+        break;
+    default:
+        API_URL = 'http://localhost:8000';
+}
 
 const ChatbotPage = () => {
     const [messages, setMessages] = useState([]);
@@ -19,7 +27,7 @@ const ChatbotPage = () => {
 
     useEffect(() => {
         // Get initial message when component mounts
-        fetch(`${API_URL}/chat`, {
+        fetch(`${API_URL}/chatbot`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,7 +66,7 @@ const ChatbotPage = () => {
         setInputMessage('');
 
         try {
-            const response = await fetch(`${API_URL}/chat`, {
+            const response = await fetch(`${API_URL}/chatbot`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -79,7 +87,7 @@ const ChatbotPage = () => {
         } catch (error) {
             console.error('Error:', error);
             setMessages(prev => [...prev, {
-                text: "Sorry, I'm having trouble connecting to the server.",
+                text: `Sorry, I'm having trouble connecting to the server. node process: ${process.env.NODE_ENV}`,
                 isUser: false
             }]);
         }
