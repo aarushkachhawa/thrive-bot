@@ -7,7 +7,7 @@ switch (process.env.NODE_ENV) {
     case 'production':
         API_URL = 'https://thrive-bot-testing.up.railway.app';
         break;
-    case 'development':
+    case 'production2':
         API_URL = 'https://thrive-bot-production.up.railway.app';
         break;
     default:
