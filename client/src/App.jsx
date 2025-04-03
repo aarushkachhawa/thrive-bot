@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import ChatbotPage from './components/ChatbotPage';
 import './App.css';
 import HomePage from './components/LandingPage';
 import SignUpPage from './components/SignUpPage';
@@ -14,7 +13,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/chatbot" element={<ChatbotPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/confirmation" element={<ConfirmationPage />} />
           <Route path="/chat" element={<ChatPage />} />
