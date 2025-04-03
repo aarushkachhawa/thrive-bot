@@ -21,7 +21,9 @@ app.use(cors({
     'http://localhost:5173', 
     'http://127.0.0.1:5173',
     'https://thrive-bot-production.up.railway.app',
-    'https://thrive-bot-production.up.railway.app:8080'
+    'https://thrive-bot-production.up.railway.app:8080',
+    'https://thrive-bot-testing.up.railway.app',
+    'https://thrive-bot-testing.up.railway.app:8080'
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: false,
