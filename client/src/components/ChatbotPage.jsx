@@ -4,17 +4,6 @@ import './ChatbotPage.css';
 
 let API_URL = 'http://localhost:8000';
 
-/*switch (process.env.NODE_ENV) {
-    case 'production':
-        API_URL = 'https://thrive-bot-testing.up.railway.app';
-        break;
-    case 'production2':
-        API_URL = 'https://thrive-bot-production.up.railway.app';
-        break;
-    default:
-        API_URL = 'http://localhost:8000';
-}*/
-
 const ChatbotPage = () => {
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState('');
