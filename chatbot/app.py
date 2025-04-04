@@ -74,7 +74,7 @@ def chat():
             'details': str(e)
         }), 500
 
-@app.route('/test', methods=['GET'])
+@app.route('/testchat', methods=['GET'])
 def test():
     return jsonify({
         'status': 'ok',
