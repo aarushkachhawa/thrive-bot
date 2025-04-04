@@ -2,8 +2,16 @@ import React, { useRef, useState, useEffect } from "react";
 import backgroundImage from "../assets/LandingPageBG.jpg";
 import { useNavigate } from "react-router-dom";
 
-let API_URL = 'http://localhost:8000';
+// Get the current hostname
+const hostname = window.location.hostname;
+let API_URL;
 
+if (hostname === 'localhost') {
+    API_URL = 'http://localhost:8000';
+} else {
+    // If running on Railway, use the same domain for the backend
+    API_URL = `https://${hostname}`;
+}
 const ChatPage = () => {
   const navigate = useNavigate();
   const chatSectionRef = useRef(null);
