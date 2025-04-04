@@ -9,7 +9,20 @@ load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)
+
+# Configure CORS
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "http://localhost:4000", # local dev front end
+            "http://localhost:8000", # local dev back end
+            "https://thrive-bot-production.up.railway.app",  # Production frontend
+            "https://thrive-bot-testing.up.railway.app",     # Testing frontend
+        ],
+        "methods": ["GET", "POST"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 openai_api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=openai_api_key)
@@ -65,7 +78,8 @@ def chat():
 def test():
     return jsonify({
         'status': 'ok',
-        'message': 'Chatbot server is running'
+        'message': 'Chatbot server is running',
+        'environment': os.environ.get('FLASK_ENV', 'not set')
     })
 
 if __name__ == '__main__':
