@@ -14,8 +14,8 @@ app = Flask(__name__)
 CORS(app, resources={
     r"/*": {
         "origins": [
-            "http://localhost:4000", # local dev front end
-            "http://localhost:8000", # local dev back end
+            "http://localhost:5173", # local dev front end
+            "http://localhost:8000", # can access itself
             "https://thrive-bot-production.up.railway.app",  # Production frontend
             "https://thrive-bot-testing.up.railway.app",     # Testing frontend
         ],
@@ -83,5 +83,6 @@ def test():
     })
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 8000))
-    app.run(host='0.0.0.0', port=port) 
+    #port = int(os.getenv('PORT', 8000))
+    #app.run(host='0.0.0.0', port=port) 
+    pass
