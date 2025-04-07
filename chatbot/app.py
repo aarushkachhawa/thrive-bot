@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 import os
 
 # Only load .env file in development
@@ -31,6 +31,8 @@ if not openai_api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set")
 
 
+client = OpenAI()
+
 conversations = {}
 
 INITIAL_MESSAGE = "Hello! I'm a chatbot from Thrive that is here to listen and support you. How are you feeling today?"
@@ -58,8 +60,7 @@ def chat():
         # Add user message to history
         conversations[conversation_id].append({"role": "user", "content": user_message})
 
-
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=conversations[conversation_id]
         )
