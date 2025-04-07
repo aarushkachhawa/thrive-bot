@@ -1,0 +1,23 @@
+Setup Steps:
+
+1. Navigate to the chatbot directory:
+   cd thrive-website/chatbot
+
+2. Create a Python virtual environment:
+   python3 -m venv venv
+
+3. Activate the virtual environment:
+   source venv/bin/activate
+
+4. Install required packages:
+   pip install flask flask-cors python-dotenv openai
+
+5. Create a .env file in the chatbot directory with:
+   FLASK_PORT=8000
+   OPENAI_API_KEY=your_api_key_here
+
+Running the Chatbot:
+1. Make sure your virtual environment is activated
+2. Run the Flask application:
+   "python app.py"
+3. Access the chatbot at: http://localhost:8000
