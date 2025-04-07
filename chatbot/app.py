@@ -31,7 +31,7 @@ if not openai_api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set")
 
 
-client = OpenAI()
+client = OpenAI(api_key=openai_api_key)
 
 conversations = {}
 
