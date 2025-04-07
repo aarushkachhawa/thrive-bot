@@ -9,7 +9,7 @@ if (hostname === 'localhost') {
     API_URL = 'http://localhost:8000';
 } else {
     // If running on Railway, use the same domain for the backend
-    API_URL = 'https://thrive-bot-testing.up.railway.app'; // 'https://${hostname}';
+    API_URL = 'https://chat-testing.up.railway.app/'; //
 }
 
 const ChatPage = () => {

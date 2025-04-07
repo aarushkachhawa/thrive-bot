@@ -78,12 +78,21 @@
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
-        const PORT = 8000;
+        // Determine the API URL based on the current hostname
+        const hostname = window.location.hostname;
+        let API_URL;
+        
+        if (hostname === 'localhost') {
+            API_URL = `http://localhost:8000`;
+        } else {
+            // Use the same hostname for the API when deployed
+            API_URL = `https://${hostname}`;
+        }
 
         // Function to get initial message
         async function getInitialMessage() {
             try {
-                const response = await fetch(`http://localhost:${PORT}/chat`, {
+                const response = await fetch(`${API_URL}/chatbot`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -116,7 +125,7 @@
             input.value = '';
 
             try {
-                const response = await fetch(`http://localhost:${PORT}/chat`, {
+                const response = await fetch(`${API_URL}/chatbot`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
