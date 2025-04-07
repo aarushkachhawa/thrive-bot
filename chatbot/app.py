@@ -4,9 +4,6 @@ from dotenv import load_dotenv
 import openai
 import os
 
-# Debug: Print all environment variables
-print("Available environment variables:", os.environ.keys())
-
 # Only load .env file in development
 if os.getenv('FLASK_ENV') != 'production':
     from dotenv import load_dotenv
@@ -33,10 +30,6 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 if not openai_api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set")
 
-client = openai.OpenAI(
-    api_key=openai_api_key,
-
-)
 
 conversations = {}
 
@@ -65,8 +58,8 @@ def chat():
         # Add user message to history
         conversations[conversation_id].append({"role": "user", "content": user_message})
 
-        # Get response from OpenAI
-        response = client.chat.completions.create(
+
+        response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=conversations[conversation_id]
         )
