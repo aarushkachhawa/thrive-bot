@@ -4,8 +4,10 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import os
 
-# Load environment variables
-load_dotenv()
+# Only load .env file in development
+if os.getenv('FLASK_ENV') != 'production':
+    from dotenv import load_dotenv
+    load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
