@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
-from openai import OpenAI
+import openai
 import os
+
+# Debug: Print all environment variables
+print("Available environment variables:", os.environ.keys())
 
 # Only load .env file in development
 if os.getenv('FLASK_ENV') != 'production':
@@ -30,7 +33,10 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 if not openai_api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set")
 
-client = OpenAI(api_key=openai_api_key)
+client = openai.OpenAI(
+    api_key=openai_api_key,
+
+)
 
 conversations = {}
 
