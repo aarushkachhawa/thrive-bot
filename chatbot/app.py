@@ -30,8 +30,14 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 if not openai_api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set")
 
+try:
+    client = OpenAI(api_key=openai_api_key)
+except Exception as e:
+    print("This failed UNFORCH")
+    print(f"Error message: {str(e)}")
 
-client = OpenAI(api_key=openai_api_key)
+
+
 
 conversations = {}
 
