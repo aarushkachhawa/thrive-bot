@@ -75,6 +75,7 @@ def chat():
         print(f"Error: {str(e)}")
         return jsonify({
             'error': 'Failed to process message',
+            'response': f"Error: {str(e)}",
             'details': str(e)
         }), 500
 
